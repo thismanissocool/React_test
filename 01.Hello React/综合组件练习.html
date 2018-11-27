@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/javascript" src="../js/prop-types.js"></script>
+<script type="text/babel">
+  class AppComponent extends React.Component{
+    state = {
+      bookArr: ['白鹿原', '平凡的世界', '追风筝的人']
+    };
+
+
+    add = (bookName) => {
+      this.setState({
+        bookArr:[bookName, ...this.state.bookArr]
+      })
+    };
+
+    render(){
+      const {bookArr} = this.state;
+      console.log(bookArr);
+      return(
+        <div>
+          <h1>这是一个组件综合测试</h1>
+          < ToDoAdd add={this.add} length={bookArr.length}/>
+          < ToDoList bookArr={bookArr}/>
+        </div>
+      );
+    };
+  }
+
+  class ToDoAdd extends React.Component{
+    static propType = {
+      add: PropTypes.func.isRequired,
+      length: PropTypes.number.isRequired
+    };
+    handle = () => {
+      let bookName = this.msgInput.value.trim();
+      if(bookName === ''){
+        alert('请输入真确的书名')
+      }else{
+        this.props.add(bookName);
+      }
+      console.log(this);
+      this.msgInput.value = '';
+    };
+
+
+    render(){
+      return(
+        <div>
+          <input type="text" placeholder="请输入相关书籍" ref={input => this.msgInput = input}/> &nbsp;
+          <button onClick={this.handle}>点击添加书籍 #{this.props.length}</button>
+        </div>
+      );
+    };
+  }
+
+  class ToDoList extends React.Component{
+    static propType = {
+      bookArr: PropTypes.array.isRequired
+    };
+
+    render(){
+      const {bookArr} = this.props;
+      console.log(this);
+      return(
+        <ul>
+          {
+            bookArr.map((item, index) => {
+              return <li key={index}>{item}</li>
+            })
+          }
+        </ul>
+      );
+    };
+  }
+
+  ReactDOM.render(< AppComponent/>, document.getElementById('test'));
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/javascript" src="../js/prop-types.js"></script>
+<script type="text/babel">
+  //定义组件
+  class PropeTest extends React.Component {
+    //生命属性的类型和必要性
+    static propType = {
+      name:PropTypes.string.isRequired,
+      sex:PropTypes.string,
+      age:PropTypes.number,
+    };
+    //属性的默认值
+    static defaultProps = {
+      sex: '女',
+      age: 22
+    };
+
+    state = {
+     games: 'lol'
+    };
+
+    handle = () => {
+      this.setState({games: 'dnf'})
+    };
+
+    render(){
+      //接受外部传入的数据
+      const {name, sex, age} = this.props;
+      console.log(this);
+//      console.log(this.props);
+      return (
+        <ul onClick = {this.handle}>
+          <li>姓名：{name}</li>
+          <li>性别：{sex}</li>
+          <li>年龄：{age}</li>
+          <li>爱好：{this.state.games}</li>
+        </ul>
+      )
+    };
+  }
+  const p = {name: '小明', sex: '男', age: 10};
+
+  //渲染到页面
+  ReactDOM.render(< PropeTest name = {p.name} />, document.getElementById('test'))
+</script>
+</body>
+</html>

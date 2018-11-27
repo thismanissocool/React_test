@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="test1"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  class MyState extends React.Component {
+    constructor (props){
+      super(props);
+      this.state = {
+        doYouLike: false
+      }
+
+      this.handle = this.handle.bind(this);
+      console.log(this);
+    };
+
+    handle = function(){
+      this.setState({
+        doYouLike: !this.state.doYouLike
+      });
+    };
+
+    render(){
+      const {doYouLike} = this.state;
+      return <div onClick={this.handle}>{doYouLike ? '我信你个鬼，糟老头子，坏的很！' : '你是魔鬼吧！'}</div>
+    }
+  }
+  ReactDOM.render(< MyState />, document.getElementById('test1'));
+</script>
+</body>
+</html>

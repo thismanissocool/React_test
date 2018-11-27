@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="reactTest1"></div>
+<div id="reactTest2"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+//组件的创建
+  //1.工厂方式构建
+  function MyComponent1() {
+    return (
+      <div>
+        <h2>1.工厂方式构建组件</h2>
+        <div>1.工厂方式构建组件</div>
+        <span>1.工厂方式构建组件</span>
+      </div>
+    )
+  }
+  //2.ES6创建组件
+  class MyComponent2 extends React.Component {
+    render(){
+      console.log(this);
+      return <h1>2.ES6创建组件</h1>
+    }
+  }
+
+ReactDOM.render(< MyComponent1 />,document.getElementById('reactTest1'));
+ReactDOM.render(< MyComponent2 />,document.getElementById('reactTest2'));
+
+
+</script>
+</body>
+</html>

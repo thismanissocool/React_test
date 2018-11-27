@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="test2"></div>
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    //定义组件,ES6方式
+    class MyState extends React.Component {
+      //与定义方法，this指向实例对象
+//      constructor(props){
+//        super(props);
+//        this.state = {
+//          doYouLike: false
+//        };
+//        this.handle = this.handle.bind(this);
+//      };
+      state = {
+        doYouLike: false
+      };
+
+      //自定义方法，this指向为undifend
+      handle =() => {
+        console.log(this);
+        this.setState({
+          doYouLike: !this.state.doYouLike
+        })
+      };
+
+      render(){
+        const {doYouLike} = this.state;
+        console.log(doYouLike);
+        return <div onClick={this.handle}>{doYouLike ? '我信你个鬼!': '糟老头子坏的很'}</div>
+      };
+
+    }
+    //渲染逐渐到页面
+    ReactDOM.render(< MyState />, document.getElementById('test2'))
+  </script>
+</body>
+</html>

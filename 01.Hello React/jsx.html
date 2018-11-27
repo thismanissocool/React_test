@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <h1>这一个晴朗的早晨</h1>
+  <div id="myTest"></div>
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    //创建虚拟DOM元素
+    const vDomArr = ['javascript', 'hhhhhh', 'wwwwww', 'ewed', '4334', 'true'];
+    //渲染元素到页面中去，（注意jsx的的语法基础，1.遇到<的语法 以标签元素解析   2.遇到{ 以js语法解析；一定要用{}包裹js语法）
+    ReactDOM.render((
+      <ul>
+        {vDomArr.map((item, index) => <li key={index}>{item}</li>)}
+      </ul>
+    ),document.getElementById('myTest'))
+  </script>
+</body>
+</html>
